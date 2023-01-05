@@ -15,7 +15,7 @@ extension UIImageView {
         let imageServerUrl = URLString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
         if let url = URL(string: imageServerUrl) {
-            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
                 if error != nil {
                     DispatchQueue.main.async {
                         self.image = placeHolder

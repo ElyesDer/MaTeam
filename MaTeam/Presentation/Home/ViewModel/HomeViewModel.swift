@@ -83,6 +83,7 @@ class HomeViewModel: HomeViewModelProtocol {
     func filter(by text: String) {
         guard !text.isEmpty else {
             filteredLeagues = _leagues
+            teams = []
             return
         }
         

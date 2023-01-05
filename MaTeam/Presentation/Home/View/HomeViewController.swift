@@ -150,7 +150,6 @@ extension HomeViewController {
         collectionView.register(TeamCollectionViewCell.self, forCellWithReuseIdentifier: TeamCollectionViewCell.reuseIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
-        //        collectionView.refreshControl = searchController.searchBar
     }
     
     fileprivate func setupSearchController() {
