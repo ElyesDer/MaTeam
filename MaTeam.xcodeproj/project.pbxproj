@@ -38,6 +38,7 @@
 		E95080372967590300C1FBA7 /* MockHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080362967590300C1FBA7 /* MockHomeViewModel.swift */; };
 		E950803A29675A3100C1FBA7 /* MockLeagueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950803929675A3100C1FBA7 /* MockLeagueRepository.swift */; };
 		E950803C29676F0100C1FBA7 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950803B29676F0100C1FBA7 /* SearchResultViewController.swift */; };
+		E95080442967856B00C1FBA7 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080432967856B00C1FBA7 /* UIImageView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		E95080362967590300C1FBA7 /* MockHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeViewModel.swift; sourceTree = "<group>"; };
 		E950803929675A3100C1FBA7 /* MockLeagueRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLeagueRepository.swift; sourceTree = "<group>"; };
 		E950803B29676F0100C1FBA7 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		E95080432967856B00C1FBA7 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		E9234B1F2966B466004D1874 /* MaTeam */ = {
 			isa = PBXGroup;
 			children = (
+				E950803D296782DB00C1FBA7 /* Shared */,
 				E95080162966F6F200C1FBA7 /* Info.plist */,
 				E9234B292966B468004D1874 /* MaTeam.entitlements */,
 				E95080062966DAB900C1FBA7 /* Domain */,
@@ -388,6 +391,22 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		E950803D296782DB00C1FBA7 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E950803E296782E400C1FBA7 /* Tools */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		E950803E296782E400C1FBA7 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				E95080432967856B00C1FBA7 /* UIImageView+.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -554,6 +573,7 @@
 				E9508029296716BE00C1FBA7 /* SceneDelegate.swift in Sources */,
 				E95080052966C82D00C1FBA7 /* Stubbeable.swift in Sources */,
 				E95080082966DADB00C1FBA7 /* LeagueRepository.swift in Sources */,
+				E95080442967856B00C1FBA7 /* UIImageView+.swift in Sources */,
 				E950801B2966FCF800C1FBA7 /* HomeViewController.swift in Sources */,
 				E950803C29676F0100C1FBA7 /* SearchResultViewController.swift in Sources */,
 				E9507FFD2966C1E600C1FBA7 /* League.swift in Sources */,

@@ -38,7 +38,11 @@ class TeamCollectionViewCell: UICollectionViewCell {
     }
     
     public func setup(model: Team) {
-        imageView.image = .init(systemName: "pin")
+        guard let url = model.strTeamBadge else {
+            imageView.image = .init(named: "im_default")
+            return
+        }
+        imageView.imageFromServerURL(url, placeHolder: .init(named: "im_default"))
     }
     
     required init?(coder: NSCoder) {
