@@ -25,6 +25,11 @@
 		E95080082966DADB00C1FBA7 /* LeagueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080072966DADB00C1FBA7 /* LeagueRepository.swift */; };
 		E950800D2966E47E00C1FBA7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950800C2966E47E00C1FBA7 /* Team.swift */; };
 		E95080152966F3AF00C1FBA7 /* LeagueRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080142966F3AF00C1FBA7 /* LeagueRepositoryTests.swift */; };
+		E950801B2966FCF800C1FBA7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950801A2966FCF800C1FBA7 /* HomeViewController.swift */; };
+		E950801D2966FD2000C1FBA7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950801C2966FD2000C1FBA7 /* HomeViewModel.swift */; };
+		E950802029670DC500C1FBA7 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = E950801F29670DC500C1FBA7 /* Inject */; };
+		E95080232967129B00C1FBA7 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080222967129B00C1FBA7 /* ViewModelFactory.swift */; };
+		E95080252967133800C1FBA7 /* HomeViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080242967133800C1FBA7 /* HomeViewRepresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +74,10 @@
 		E95080102966F11800C1FBA7 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E95080142966F3AF00C1FBA7 /* LeagueRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueRepositoryTests.swift; sourceTree = "<group>"; };
 		E95080162966F6F200C1FBA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E950801A2966FCF800C1FBA7 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E950801C2966FD2000C1FBA7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E95080222967129B00C1FBA7 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
+		E95080242967133800C1FBA7 /* HomeViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRepresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E950802029670DC500C1FBA7 /* Inject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +145,7 @@
 		E9234B202966B466004D1874 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				E95080212967128F00C1FBA7 /* Factory */,
 				E9234B212966B466004D1874 /* MaTeamApp.swift */,
 			);
 			path = Application;
@@ -143,6 +154,7 @@
 		E9234B232966B466004D1874 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				E95080172966FBB600C1FBA7 /* Home */,
 				E9234B242966B466004D1874 /* ContentView.swift */,
 			);
 			path = Presentation;
@@ -270,6 +282,40 @@
 			path = DomaineLayerTests;
 			sourceTree = "<group>";
 		};
+		E95080172966FBB600C1FBA7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E95080192966FCD000C1FBA7 /* ViewModel */,
+				E95080182966FCCD00C1FBA7 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E95080182966FCCD00C1FBA7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E950801A2966FCF800C1FBA7 /* HomeViewController.swift */,
+				E95080242967133800C1FBA7 /* HomeViewRepresentable.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E95080192966FCD000C1FBA7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E950801C2966FD2000C1FBA7 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		E95080212967128F00C1FBA7 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				E95080222967129B00C1FBA7 /* ViewModelFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -287,6 +333,9 @@
 			dependencies = (
 			);
 			name = MaTeam;
+			packageProductDependencies = (
+				E950801F29670DC500C1FBA7 /* Inject */,
+			);
 			productName = MaTeam;
 			productReference = E9234B1D2966B466004D1874 /* MaTeam.app */;
 			productType = "com.apple.product-type.application";
@@ -359,6 +408,9 @@
 				Base,
 			);
 			mainGroup = E9234B142966B466004D1874;
+			packageReferences = (
+				E950801E29670DC500C1FBA7 /* XCRemoteSwiftPackageReference "Inject" */,
+			);
 			productRefGroup = E9234B1E2966B466004D1874 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -422,14 +474,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9234B252966B466004D1874 /* ContentView.swift in Sources */,
+				E950801D2966FD2000C1FBA7 /* HomeViewModel.swift in Sources */,
 				E9234B222966B466004D1874 /* MaTeamApp.swift in Sources */,
 				E9507FF32966BE1200C1FBA7 /* Requester.swift in Sources */,
 				E95080052966C82D00C1FBA7 /* Stubbeable.swift in Sources */,
 				E95080082966DADB00C1FBA7 /* LeagueRepository.swift in Sources */,
+				E950801B2966FCF800C1FBA7 /* HomeViewController.swift in Sources */,
 				E9507FFD2966C1E600C1FBA7 /* League.swift in Sources */,
 				E9507FFF2966C23E00C1FBA7 /* Endpoint.swift in Sources */,
+				E95080232967129B00C1FBA7 /* ViewModelFactory.swift in Sources */,
 				E950800D2966E47E00C1FBA7 /* Team.swift in Sources */,
 				E9507FF12966BC4C00C1FBA7 /* APIProvider.swift in Sources */,
+				E95080252967133800C1FBA7 /* HomeViewRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,6 +851,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E950801E29670DC500C1FBA7 /* XCRemoteSwiftPackageReference "Inject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzysztofzablocki/Inject";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E950801F29670DC500C1FBA7 /* Inject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E950801E29670DC500C1FBA7 /* XCRemoteSwiftPackageReference "Inject" */;
+			productName = Inject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E9234B152966B466004D1874 /* Project object */;
 }
