@@ -22,6 +22,7 @@ class StubProvider {
     static var instance = StubProvider()
     
     var leagues: [League] = []
+    var teams: [Team] = []
     
     var leaguesEndpoints: StubEndpoints = []
     
@@ -31,9 +32,13 @@ class StubProvider {
         for _ in 0...5 {
             leagues.append(
                 .init(idLeague: UUID().uuidString,
-                      strLeague: "League-\(Int.random(in: 0...50))",
+                      strLeague: "League-English-\(Int.random(in: 0...50))",
                       strSport: "Sport-\(Int.random(in: 0...50))",
                       strLeagueAlternate: "Alternate-\(Int.random(in: 0...50))")
+            )
+            
+            teams.append(
+                .init(idTeam: UUID().uuidString, strTeam: "Team-Paris-\(Int.random(in: 0...50))")
             )
         }
         

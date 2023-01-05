@@ -12,7 +12,8 @@ struct Leagues: Decodable {
 }
 
 struct League: Decodable {
-    let idLeague, strLeague, strSport, strLeagueAlternate: String
+    let idLeague, strLeague: String
+    let strSport, strLeagueAlternate: String?
 }
 
 extension League: Stubbeable {}

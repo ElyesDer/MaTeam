@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-@main
-struct MaTeamApp: App {
-    var viewModelFactory: ViewModelFactory = .init()
-    
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(viewModelFactory)
-        }
-    }
-}
+//@main
+//struct MaTeamApp: App {
+//    var viewModelFactory: ViewModelFactory = .init()
+//    
+//    var body: some Scene {
+//        WindowGroup {
+//            ContentView()
+//                .environmentObject(viewModelFactory)
+//        }
+//    }
+//}

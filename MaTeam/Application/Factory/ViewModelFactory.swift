@@ -14,7 +14,7 @@ class ViewModelFactory: ObservableObject, ViewModelFactoryProtocol {
     var requester: DataServiceProviderProtocol
     var leagueRepository: LeagueRepositoryProtocol
     
-    init() {
+    init(requester: DataServiceProviderProtocol = Requester(), leagueRepository: LeagueRepositoryProtocol = LeagueRepository(requester: Requester())) {
         self.requester = Requester()
         self.leagueRepository = LeagueRepository(requester: self.requester)
     }

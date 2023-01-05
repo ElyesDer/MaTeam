@@ -6,18 +6,33 @@
 //
 
 import UIKit
-import Inject
+import Combine
 
 class HomeViewController: UIViewController {
     
     // Initialize views
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
-    lazy var activityIndicationView = UIActivityIndicatorView(style: .medium)
+    lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
+        
+        return collectionView
+    }()
+    
+    lazy var activityIndicationView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
     
     // Search controller
     lazy var searchController: UISearchController = {
-        UISearchController(searchResultsController: nil)
+        let searchController = UISearchController(searchResultsController: nil)
+        
+        return searchController
     }()
+    
+    // setup properties
+    private var cancellable = Set<AnyCancellable>()
     
     // setup viewModel
     let viewModel: HomeViewModel
@@ -36,16 +51,73 @@ class HomeViewController: UIViewController {
         
         setupCollectionView()
         setupSearchController()
+        setupViews()
+        setupConstraints()
+        
+        // setup binding
+        bindViewModelToView()
+    }
+}
+
+// MARK: - Setup constraint
+
+extension HomeViewController {
+    
+    // setup binding
+    
+    func bindViewModelToView() {
+        viewModel.$teams
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { [weak self] _ in
+                // update data source
+                self?.collectionView.reloadData()
+            })
+            .store(in: &cancellable)
+        
+        let stateValueHandler: (HomeViewModel.HomeViewModelState) -> Void = { [weak self] state in
+            switch state {
+                case .loading:
+                    self?.activityIndicationView.startAnimating()
+                case .idle:
+                    self?.activityIndicationView.stopAnimating()
+                case .error:
+                    self?.activityIndicationView.stopAnimating()
+                    print("Show alert")
+            }
+        }
+        
+        viewModel.$state
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: stateValueHandler)
+            .store(in: &cancellable)
     }
     
-    func setupCollectionView() {
+    fileprivate func setupViews() {
+        collectionView.addSubview(activityIndicationView)
+        view.addSubview(collectionView)
+    }
+    
+    fileprivate func setupConstraints() {
+        collectionView
+            .anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
+        
+        NSLayoutConstraint.activate([
+            activityIndicationView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor),
+            activityIndicationView.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor),
+            activityIndicationView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+    }
+    
+    fileprivate func setupCollectionView() {
         // Set up collection view
+        collectionView.register(TeamCollectionViewCell.self, forCellWithReuseIdentifier: TeamCollectionViewCell.reuseIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         //        collectionView.refreshControl = searchController.searchBar
     }
     
-    func setupSearchController() {
+    fileprivate func setupSearchController() {
         // Set up search controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -55,19 +127,29 @@ class HomeViewController: UIViewController {
     }
 }
 
+// MARK: - Setup Collection View Delegate
+
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        0
+        return viewModel.teams.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return .init()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TeamCollectionViewCell.reuseIdentifier, for: indexPath) as? TeamCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        cell.setup(model: viewModel.teams[indexPath.row])
+        return cell
     }
 }
 
+// MARK: - Setup Search result Controller
+
 extension HomeViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
+        guard let text = searchController.searchBar.text else { return }
+        viewModel.searchText = text
     }
 }
