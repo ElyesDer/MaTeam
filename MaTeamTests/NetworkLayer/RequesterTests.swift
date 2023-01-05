@@ -68,6 +68,54 @@ final class RequesterTests: XCTestCase {
         
     }
     
+    func test_get_league_error_404() async throws {
+        
+        // prepare stub
+        guard let randomLeague = StubProvider.instance.leaguesEndpoints.randomElement(), let data = randomLeague.content.data(using: .utf8) else {
+            assertionFailure("Can't find a valid stub element to test")
+            return
+        }
+        
+        // init endpoint
+        endpoint = Endpoint(method: .get, endURL: .allLeagues)
+        
+        // prepare mock configuration
+        MockURLProtocol.requestHandler = { urlRequest in
+            guard let url = urlRequest.url, url == randomLeague.endpoint else {
+                throw Requester.ServiceError.urlRequest
+            }
+            
+            let response = HTTPURLResponse(url: randomLeague.endpoint, statusCode: 404, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
+        
+        // assign configuration
+        let configuration: URLSessionConfiguration = .default
+        configuration.protocolClasses = [MockURLProtocol.self]
+        let urlSession = URLSession.init(configuration: configuration)
+        
+        // setup requester
+        requester = Requester(urlSession: urlSession)
+        
+        // execute
+        do {
+            _ = try await requester.request(from: endpoint, of: Leagues.self)
+            XCTFail("Request should not succeed")
+        } catch {
+            guard let error = error as? Requester.ServiceError else {
+                XCTFail("Different error from service thrown")
+                return
+            }
+            
+            if case Requester.ServiceError.statusCodeError(404) = error {
+                return
+            } else {
+                XCTFail("ServiceError.statusCodeError different fron 404")
+            }
+        }
+        
+    }
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
