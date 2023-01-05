@@ -55,7 +55,7 @@ final class RequesterTests: XCTestCase {
         }
         
         // test
-        
+        XCTAssertTrue(team.idLeague == "133702")
     }
     
     func test_get_league_success() async throws {
