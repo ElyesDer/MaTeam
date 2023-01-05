@@ -9,8 +9,10 @@ import Foundation
 
 public enum APIProvider {
     
+    public static let apiKey: String = Bundle.main.infoDictionary?["API_KEY"] as? String ?? "NO_TOKEN"
+    
     private var baseUrl: String {
-        "https://www.thesportsdb.com/api/v1/json/50130162/"
+        "https://www.thesportsdb.com/api/v1/json/\(APIProvider.apiKey)/"
     }
     
     //    API 1: API pour récupérer la liste des ligues disponibles: /all_leagues.php

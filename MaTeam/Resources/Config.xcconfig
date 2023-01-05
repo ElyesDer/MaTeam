@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  MaTeam
+//
+//  Created by Derouiche Elyes on 05/01/2023.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_KEY = 50130162

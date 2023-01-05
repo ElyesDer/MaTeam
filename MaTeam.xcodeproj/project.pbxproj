@@ -65,6 +65,7 @@
 		E95080042966C82D00C1FBA7 /* Stubbeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stubbeable.swift; sourceTree = "<group>"; };
 		E95080072966DADB00C1FBA7 /* LeagueRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueRepository.swift; sourceTree = "<group>"; };
 		E950800C2966E47E00C1FBA7 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		E95080102966F11800C1FBA7 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				E9234B272966B468004D1874 /* Assets.xcassets */,
+				E95080102966F11800C1FBA7 /* Config.xcconfig */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -456,6 +458,7 @@
 /* Begin XCBuildConfiguration section */
 		E9234B432966B468004D1874 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E95080102966F11800C1FBA7 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -514,6 +517,7 @@
 		};
 		E9234B442966B468004D1874 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E95080102966F11800C1FBA7 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -565,6 +569,7 @@
 		};
 		E9234B462966B468004D1874 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E95080102966F11800C1FBA7 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -603,6 +608,7 @@
 		};
 		E9234B472966B468004D1874 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E95080102966F11800C1FBA7 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -641,6 +647,7 @@
 		};
 		E9234B492966B468004D1874 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E95080102966F11800C1FBA7 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -664,6 +671,7 @@
 		};
 		E9234B4A2966B468004D1874 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E95080102966F11800C1FBA7 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -687,6 +695,7 @@
 		};
 		E9234B4C2966B468004D1874 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E95080102966F11800C1FBA7 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -709,6 +718,7 @@
 		};
 		E9234B4D2966B468004D1874 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E95080102966F11800C1FBA7 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
