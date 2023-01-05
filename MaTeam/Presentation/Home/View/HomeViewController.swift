@@ -12,7 +12,12 @@ class HomeViewController: UIViewController {
     
     // Initialize views
     lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
+        
+        // setup layout
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: 100, height: 100)
+        flowLayout.minimumInteritemSpacing = 10
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         
         return collectionView
     }()
@@ -26,8 +31,7 @@ class HomeViewController: UIViewController {
     
     // Search controller
     lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
-        
+        let searchController = UISearchController(searchResultsController: SearchResultViewController(delegate: self))
         return searchController
     }()
     
@@ -59,6 +63,29 @@ class HomeViewController: UIViewController {
     }
 }
 
+// MARK: - Setup Search result Delegate
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.viewModel.filteredLeagues.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "defaultCell", for: indexPath)
+        cell.textLabel?.text = self.viewModel.filteredLeagues[indexPath.row].strLeague
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let leagueName: String = self.viewModel.filteredLeagues[indexPath.row].strLeague
+        self.viewModel.search(by: leagueName)
+        
+        guard let searchResultController = self.searchController.searchResultsController as? SearchResultViewController else { return }
+        self.searchController.searchBar.text = leagueName
+        searchResultController.dismiss(animated: true)
+    }
+}
+
 // MARK: - Setup constraint
 
 extension HomeViewController {
@@ -66,6 +93,15 @@ extension HomeViewController {
     // setup binding
     
     func bindViewModelToView() {
+        
+        viewModel.$filteredLeagues
+            .receive(on: RunLoop.main)
+            .sink { _ in
+                guard let searchResultController = self.searchController.searchResultsController as? SearchResultViewController else { return }
+                searchResultController.tableView.reloadData()
+            }
+            .store(in: &cancellable)
+        
         viewModel.$teams
             .receive(on: RunLoop.main)
             .sink(receiveValue: { [weak self] _ in
@@ -131,6 +167,10 @@ extension HomeViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.teams.count
     }
@@ -142,6 +182,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.setup(model: viewModel.teams[indexPath.row])
         return cell
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding: CGFloat = 50
+        let collectionViewSize = collectionView.frame.size.width - padding
+        
+        return CGSize(width: collectionViewSize / 2, height: collectionViewSize / 2)
     }
 }
 

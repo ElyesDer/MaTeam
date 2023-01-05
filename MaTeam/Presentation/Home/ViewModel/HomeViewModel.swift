@@ -72,7 +72,7 @@ class HomeViewModel: HomeViewModelProtocol {
     
     private func setupListener() {
         self.$searchText
-            .debounce(for: 0.4, scheduler: RunLoop.main)
+            .debounce(for: 0.2, scheduler: RunLoop.main)
             .removeDuplicates()
             .sink { [weak self] text in
                 self?.filter(by: text)
@@ -112,7 +112,8 @@ class HomeViewModel: HomeViewModelProtocol {
         self.state = .loading
         Task {
             do {
-                _leagues = try await leagueRepository.getLeagues().leagues
+                teams = try await leagueRepository.getAllTeamsLeague(by: league).teams
+                print(teams.count)
                 self.state = .idle
             } catch {
                 self.state = .error
