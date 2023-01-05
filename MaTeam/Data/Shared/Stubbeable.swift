@@ -7,7 +7,7 @@
 
 import Foundation
 
-// does the world even exists ? =D
+// does the word even exists ? =D
 
 protocol Stubbeable: Encodable {
     var data: Data? { get }

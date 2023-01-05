@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol HasDataServiceProviderProtocol {
+    var requester: DataServiceProviderProtocol { get }
+}
+
 protocol DataServiceProviderProtocol {
     var urlSession: URLSession { get }
     func request<T>(from provider: NetworkProvider, of type: T.Type) async throws -> T where T: Decodable

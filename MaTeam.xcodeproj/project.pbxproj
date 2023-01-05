@@ -22,6 +22,9 @@
 		E9507FFF2966C23E00C1FBA7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9507FFE2966C23E00C1FBA7 /* Endpoint.swift */; };
 		E95080022966C51A00C1FBA7 /* Stubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080012966C51A00C1FBA7 /* Stubs.swift */; };
 		E95080052966C82D00C1FBA7 /* Stubbeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080042966C82D00C1FBA7 /* Stubbeable.swift */; };
+		E95080082966DADB00C1FBA7 /* LeagueRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080072966DADB00C1FBA7 /* LeagueRepository.swift */; };
+		E950800B2966DFEC00C1FBA7 /* LanguageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950800A2966DFEC00C1FBA7 /* LanguageProvider.swift */; };
+		E950800D2966E47E00C1FBA7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950800C2966E47E00C1FBA7 /* Team.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		E9507FFE2966C23E00C1FBA7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		E95080012966C51A00C1FBA7 /* Stubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stubs.swift; sourceTree = "<group>"; };
 		E95080042966C82D00C1FBA7 /* Stubbeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stubbeable.swift; sourceTree = "<group>"; };
+		E95080072966DADB00C1FBA7 /* LeagueRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueRepository.swift; sourceTree = "<group>"; };
+		E950800A2966DFEC00C1FBA7 /* LanguageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageProvider.swift; sourceTree = "<group>"; };
+		E950800C2966E47E00C1FBA7 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,7 @@
 		E9234B1F2966B466004D1874 /* MaTeam */ = {
 			isa = PBXGroup;
 			children = (
+				E95080062966DAB900C1FBA7 /* Domain */,
 				E9234B292966B468004D1874 /* MaTeam.entitlements */,
 				E9507FFA2966C18C00C1FBA7 /* Data */,
 				E9507FEF2966BC1900C1FBA7 /* Network */,
@@ -213,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				E9507FFC2966C1E600C1FBA7 /* League.swift */,
+				E950800C2966E47E00C1FBA7 /* Team.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -229,6 +237,23 @@
 			isa = PBXGroup;
 			children = (
 				E95080042966C82D00C1FBA7 /* Stubbeable.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		E95080062966DAB900C1FBA7 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				E95080092966DFD000C1FBA7 /* Shared */,
+				E95080072966DADB00C1FBA7 /* LeagueRepository.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		E95080092966DFD000C1FBA7 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E950800A2966DFEC00C1FBA7 /* LanguageProvider.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -388,8 +413,11 @@
 				E9234B222966B466004D1874 /* MaTeamApp.swift in Sources */,
 				E9507FF32966BE1200C1FBA7 /* Requester.swift in Sources */,
 				E95080052966C82D00C1FBA7 /* Stubbeable.swift in Sources */,
+				E95080082966DADB00C1FBA7 /* LeagueRepository.swift in Sources */,
 				E9507FFD2966C1E600C1FBA7 /* League.swift in Sources */,
+				E950800B2966DFEC00C1FBA7 /* LanguageProvider.swift in Sources */,
 				E9507FFF2966C23E00C1FBA7 /* Endpoint.swift in Sources */,
+				E950800D2966E47E00C1FBA7 /* Team.swift in Sources */,
 				E9507FF12966BC4C00C1FBA7 /* APIProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

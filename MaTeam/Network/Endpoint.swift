@@ -34,7 +34,7 @@ public struct Endpoint: NetworkProvider {
     }
     
     public func buildURLRequest() throws -> URLRequest {
-        guard let url = URL(string: self.endURL.rawValue) else { throw NetworkProviderError.urlBuilder }
+        guard let formatedUrl = self.endURL.rawValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: formatedUrl) else { throw NetworkProviderError.urlBuilder }
         var urlRequest = URLRequest(url: url)
         
         urlRequest.httpMethod = method.rawValue

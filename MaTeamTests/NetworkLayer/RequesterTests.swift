@@ -19,6 +19,45 @@ final class RequesterTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
+    func test_get_team_success() async throws {
+        
+        // prepare stub
+        guard let randomTeam = StubProvider.instance.teamEndpoints.randomElement(), let data = randomTeam.content.data(using: .utf8) else {
+            assertionFailure("Can't find a valid stub element to test")
+            return
+        }
+        
+        // init endpoint
+        endpoint = Endpoint(method: .get, endURL: .team(name: "Paris SG"))
+        
+        // prepare mock configuration
+        MockURLProtocol.requestHandler = { urlRequest in
+            guard let url = urlRequest.url, url == randomTeam.endpoint else {
+                throw Requester.ServiceError.urlRequest
+            }
+            
+            let response = HTTPURLResponse(url: randomTeam.endpoint, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
+        
+        // assign configuration
+        let configuration: URLSessionConfiguration = .default
+        configuration.protocolClasses = [MockURLProtocol.self]
+        let urlSession = URLSession.init(configuration: configuration)
+        
+        // setup requester
+        requester = Requester(urlSession: urlSession)
+        
+        // execute
+        guard let team = try? await requester.request(from: endpoint, of: Team.self) else {
+            XCTFail("Could not parse request team")
+            return
+        }
+        
+        // test
+        
+    }
+    
     func test_get_league_success() async throws {
         
         // prepare stub
