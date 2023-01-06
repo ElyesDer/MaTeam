@@ -23,4 +23,7 @@ class ViewModelFactory: ObservableObject, ViewModelFactoryProtocol {
         return HomeViewModel(dependency: self)
     }
     
+    func buildDetailsViewModel(name: String) -> DetailsViewModel {
+        return DetailsViewModel(dependency: self, teamName: name)
+    }
 }

@@ -13,9 +13,7 @@ protocol HasLeagueRepositoryProtocol {
 
 protocol LeagueRepositoryProtocol {
     func getLeagues() async throws -> Leagues
-    
     func getAllTeamsLeague(by name: String) async throws -> Teams
-    
     func getTeamDetails(by name: String) async throws -> Teams
 }
 

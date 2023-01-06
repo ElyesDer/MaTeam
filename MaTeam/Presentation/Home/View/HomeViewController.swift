@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SwiftUI
 
 class HomeViewController: UIViewController {
     
@@ -37,6 +38,7 @@ class HomeViewController: UIViewController {
     
     // setup properties
     private var cancellable = Set<AnyCancellable>()
+    private let factory = ViewModelFactory()
     
     // setup viewModel
     let viewModel: HomeViewModel
@@ -181,6 +183,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         cell.setup(model: viewModel.teams[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let teamName: String = self.viewModel.teams[indexPath.row].strTeam
+        
+        let detailsVC = UIHostingController(rootView: DetailsView(viewModel: factory.buildDetailsViewModel(name: teamName)))
+        
+        self.navigationController?.pushViewController(detailsVC, animated: true)
     }
 }
 
