@@ -6,12 +6,3 @@
 //
 
 import SwiftUI
-
-@main
-struct MaTeamApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
-}
