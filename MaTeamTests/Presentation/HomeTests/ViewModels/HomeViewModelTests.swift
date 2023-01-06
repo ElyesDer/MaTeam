@@ -65,6 +65,21 @@ final class HomeViewModelTests: XCTestCase {
         XCTAssertTrue(firstElement.strLeague.contains(searchedLeague))
     }
     
+    func test_filter_fail() async throws {
+        
+        // given
+        sut = viewModelFactory.buildHomeViewModel()
+        let searchedLeague = "Not exist "
+        
+        // execute
+        await self.sut.fetchLeagues()
+        self.sut.filter(by: searchedLeague)
+        
+        // test
+        XCTAssertTrue(sut.filteredLeagues.isEmpty)
+        XCTAssertTrue(sut.state == .idle)
+    }
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }

@@ -27,7 +27,6 @@
 		E95080152966F3AF00C1FBA7 /* LeagueRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080142966F3AF00C1FBA7 /* LeagueRepositoryTests.swift */; };
 		E950801B2966FCF800C1FBA7 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950801A2966FCF800C1FBA7 /* HomeViewController.swift */; };
 		E950801D2966FD2000C1FBA7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950801C2966FD2000C1FBA7 /* HomeViewModel.swift */; };
-		E950802029670DC500C1FBA7 /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = E950801F29670DC500C1FBA7 /* Inject */; };
 		E95080232967129B00C1FBA7 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080222967129B00C1FBA7 /* ViewModelFactory.swift */; };
 		E95080252967133800C1FBA7 /* HomeViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080242967133800C1FBA7 /* HomeViewRepresentable.swift */; };
 		E9508027296716A100C1FBA7 /* Appdelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9508026296716A100C1FBA7 /* Appdelegate.swift */; };
@@ -41,6 +40,7 @@
 		E95080442967856B00C1FBA7 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95080432967856B00C1FBA7 /* UIImageView+.swift */; };
 		E950804929678A7000C1FBA7 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950804829678A7000C1FBA7 /* DetailsViewModel.swift */; };
 		E950804C29678E7200C1FBA7 /* StickyHeaderContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E950804B29678E7200C1FBA7 /* StickyHeaderContainer.swift */; };
+		E99ACC89296813A1007D14FF /* readme.md in Resources */ = {isa = PBXBuildFile; fileRef = E99ACC88296813A1007D14FF /* readme.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +100,7 @@
 		E95080432967856B00C1FBA7 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		E950804829678A7000C1FBA7 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		E950804B29678E7200C1FBA7 /* StickyHeaderContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyHeaderContainer.swift; sourceTree = "<group>"; };
+		E99ACC88296813A1007D14FF /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +108,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E950802029670DC500C1FBA7 /* Inject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +131,7 @@
 		E9234B142966B466004D1874 = {
 			isa = PBXGroup;
 			children = (
+				E99ACC88296813A1007D14FF /* readme.md */,
 				E9234B1F2966B466004D1874 /* MaTeam */,
 				E9234B342966B468004D1874 /* MaTeamTests */,
 				E9234B3E2966B468004D1874 /* MaTeamUITests */,
@@ -463,7 +464,6 @@
 			);
 			name = MaTeam;
 			packageProductDependencies = (
-				E950801F29670DC500C1FBA7 /* Inject */,
 			);
 			productName = MaTeam;
 			productReference = E9234B1D2966B466004D1874 /* MaTeam.app */;
@@ -538,7 +538,6 @@
 			);
 			mainGroup = E9234B142966B466004D1874;
 			packageReferences = (
-				E950801E29670DC500C1FBA7 /* XCRemoteSwiftPackageReference "Inject" */,
 			);
 			productRefGroup = E9234B1E2966B466004D1874 /* Products */;
 			projectDirPath = "";
@@ -557,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9234B2C2966B468004D1874 /* Preview Assets.xcassets in Resources */,
+				E99ACC89296813A1007D14FF /* readme.md in Resources */,
 				E9234B282966B468004D1874 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -802,10 +802,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.homework.MaTeam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -842,10 +842,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.homework.MaTeam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -991,25 +991,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E950801E29670DC500C1FBA7 /* XCRemoteSwiftPackageReference "Inject" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/krzysztofzablocki/Inject";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 1.2.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E950801F29670DC500C1FBA7 /* Inject */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E950801E29670DC500C1FBA7 /* XCRemoteSwiftPackageReference "Inject" */;
-			productName = Inject;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E9234B152966B466004D1874 /* Project object */;
 }
