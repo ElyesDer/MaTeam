@@ -109,6 +109,7 @@ class HomeViewModel: HomeViewModelProtocol {
         
         do {
             teams = try await leagueRepository.getAllTeamsLeague(by: league).teams
+                .sorted { $0.strTeam > $1.strTeam }
             self.state = .idle
         } catch {
             self.state = .error
