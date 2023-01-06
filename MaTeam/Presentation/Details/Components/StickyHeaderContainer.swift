@@ -44,8 +44,7 @@ struct StickyHeaderContainer_Previews: PreviewProvider {
         
         StickyHeaderContainer(header: Image(systemName: "pin")
             .resizable()
-            .padding(.top, 50)
-                              , content: {
+            .padding(.top, 50), content: {
             HStack {
                 Spacer()
                 Spacer()

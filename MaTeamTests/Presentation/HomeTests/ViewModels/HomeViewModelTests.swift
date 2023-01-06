@@ -46,34 +46,23 @@ final class HomeViewModelTests: XCTestCase {
         
     }
     
-    func test_filter_success() throws {
-        
-        let expectation = self.expectation(description: "Waiting to grab leagues elements")
+    func test_filter_success() async throws {
         
         // given
         sut = viewModelFactory.buildHomeViewModel()
         let searchedLeague = "English "
         
         // execute
-        self.sut.search(by: searchedLeague)
+        await self.sut.fetchLeagues()
+        self.sut.filter(by: searchedLeague)
         
-        sut.statePublisher
-            .sink { state in
-                if state != .loading {
-                    
-                    // test
-                    guard let firstElement = self.sut.filteredLeagues.first else {
-                        XCTFail("Failed to grab first element")
-                        return
-                    }
-                    
-                    XCTAssertTrue(firstElement.strLeague.contains(searchedLeague))
-                    expectation.fulfill()
-                }
-            }
-            .store(in: &cancellable)
+        // test
+        guard let firstElement = self.sut.filteredLeagues.first else {
+            XCTFail("Failed to grab first element")
+            return
+        }
         
-        waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertTrue(firstElement.strLeague.contains(searchedLeague))
     }
     
     override func tearDownWithError() throws {

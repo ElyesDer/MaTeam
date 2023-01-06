@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
         flowLayout.itemSize = CGSize(width: 100, height: 100)
         flowLayout.minimumInteritemSpacing = 10
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        
+        collectionView.alwaysBounceVertical = true
         return collectionView
     }()
     
@@ -54,7 +54,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .systemBackground
         setupCollectionView()
         setupSearchController()
         setupViews()
@@ -80,11 +80,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueName: String = self.viewModel.filteredLeagues[indexPath.row].strLeague
-        self.viewModel.search(by: leagueName)
         
-        guard let searchResultController = self.searchController.searchResultsController as? SearchResultViewController else { return }
-        self.searchController.searchBar.text = leagueName
-        searchResultController.dismiss(animated: true)
+        Task {
+            await self.viewModel.search(by: leagueName)
+            
+            guard let searchResultController = self.searchController.searchResultsController as? SearchResultViewController else { return }
+            self.searchController.searchBar.text = leagueName
+            searchResultController.dismiss(animated: true)
+        }
     }
 }
 
@@ -128,6 +131,10 @@ extension HomeViewController {
             .receive(on: RunLoop.main)
             .sink(receiveValue: stateValueHandler)
             .store(in: &cancellable)
+        
+        Task {
+            await viewModel.fetchLeagues()
+        }
     }
     
     fileprivate func setupViews() {

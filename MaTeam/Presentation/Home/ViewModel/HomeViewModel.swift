@@ -25,8 +25,8 @@ protocol HomeViewModelProtocol: HasLeagueRepositoryProtocol {
     var statePublisher: Published<HomeViewModel.HomeViewModelState>.Publisher { get }
     
     func filter(by text: String)
-    func fetchLeagues()
-    func search(by league: String)
+    func fetchLeagues() async
+    func search(by league: String) async
 }
 
 class HomeViewModel: HomeViewModelProtocol {
@@ -65,9 +65,6 @@ class HomeViewModel: HomeViewModelProtocol {
     init(dependency: Dependencies) {
         self.leagueRepository = dependency.leagueRepository
         setupListener()
-        
-        // init fetch
-        fetchLeagues()
     }
     
     private func setupListener() {
@@ -92,34 +89,29 @@ class HomeViewModel: HomeViewModelProtocol {
         }
     }
     
-    func fetchLeagues() {
+    func fetchLeagues() async {
         self.state = .loading
-        Task {
-            do {
-                _leagues = try await leagueRepository.getLeagues().leagues
-                self.state = .idle
-            } catch {
-                self.state = .error
-            }
+        do {
+            _leagues = try await leagueRepository.getLeagues().leagues
+            self.state = .idle
+        } catch {
+            self.state = .error
         }
     }
     
-    func search(by league: String) {
+    func search(by league: String) async {
         guard !league.isEmpty else {
             teams = []
             return
         }
         
         self.state = .loading
-        Task {
-            do {
-                teams = try await leagueRepository.getAllTeamsLeague(by: league).teams
-                print(teams.count)
-                self.state = .idle
-            } catch {
-                self.state = .error
-            }
+        
+        do {
+            teams = try await leagueRepository.getAllTeamsLeague(by: league).teams
+            self.state = .idle
+        } catch {
+            self.state = .error
         }
     }
-    
 }

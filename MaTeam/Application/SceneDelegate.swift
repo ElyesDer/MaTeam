@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let homeViewController = HomeViewController(viewModel: self.factory.buildHomeViewModel())
         
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = Inject.ViewControllerHost(UINavigationController(rootViewController: homeViewController))
+        window.rootViewController = UINavigationController(rootViewController: homeViewController)
         self.window = window
         
         window.makeKeyAndVisible()
